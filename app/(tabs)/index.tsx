@@ -1,75 +1,164 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import React from "react";
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { Button } from "react-native-paper";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+const LoginScreen = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.innerContainer}>
+        {/* Left Panel */}
+        <View style={styles.leftPanel}>
+          <Text style={styles.header}>REKKI DISTRIBUTORS</Text>
+          <Text style={styles.subHeader}>
+            the online platform for managing your{"\n"}customers, orders and
+            payments
+          </Text>
+          <View style={styles.footerLinks}>
+            <Text style={styles.link}>restaurants</Text>
+            <Text style={styles.link}>distributors</Text>
+            <Text style={styles.link}>help</Text>
+            <Text style={styles.link}>about us</Text>
+            <Text style={styles.link}>faqs</Text>
+            <Text style={styles.link}>terms and conditions</Text>
+          </View>
+        </View>
+
+        {/* Right Panel */}
+        <View style={styles.rightPanel}>
+          <Text style={styles.loginTitle}>log in to REKKI</Text>
+
+          <TextInput
+            style={styles.input}
+            placeholder="email"
+            placeholderTextColor="#999"
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="password"
+            secureTextEntry
+            placeholderTextColor="#999"
+          />
+
+          <TouchableOpacity>
+            <Text style={styles.forgotPassword}>forgot password?</Text>
+          </TouchableOpacity>
+
+          <Button
+            mode="contained"
+            onPress={() => {}}
+            style={styles.loginButton}
+            labelStyle={{ fontSize: 16 }}
+          >
+            log in
+          </Button>
+
+          <Text style={styles.newUser}>
+            new to REKKI?{" "}
+            <Text style={styles.signup}>set up a distributor account</Text>
+          </Text>
+
+          <TouchableOpacity style={styles.languageSelector}>
+            <Text style={styles.languageText}>English (US) ▼</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
-}
+};
+
+export default LoginScreen;
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#ccc",
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  innerContainer: {
+    flexDirection: "row",
+    flexGrow: 1,
+    padding: 0,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  leftPanel: {
+    flex: 1,
+    backgroundColor: "#ccc",
+    justifyContent: "center",
+    padding: 24,
+  },
+  header: {
+    fontSize: 32,
+    fontWeight: "900",
+    color: "#000",
+  },
+  subHeader: {
+    fontSize: 18,
+    color: "#555",
+    marginTop: 16,
+  },
+  footerLinks: {
+    position: "absolute",
+    bottom: 20,
+    left: 24,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
+  },
+  link: {
+    color: "#000",
+    fontSize: 12,
+    marginRight: 12,
+    marginTop: 6,
+  },
+  rightPanel: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    padding: 24,
+  },
+  loginTitle: {
+    fontSize: 22,
+    fontWeight: "600",
+    marginBottom: 20,
+    color: "#000",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ddd",
+    padding: 12,
+    borderRadius: 4,
+    marginBottom: 12,
+    backgroundColor: "#eee",
+  },
+  forgotPassword: {
+    color: "#000",
+    textDecorationLine: "underline",
+    marginBottom: 24,
+  },
+  loginButton: {
+    backgroundColor: "#007aff",
+    paddingVertical: 10,
+    borderRadius: 4,
+  },
+  newUser: {
+    marginTop: 20,
+    fontSize: 14,
+  },
+  signup: {
+    color: "#007aff",
+    textDecorationLine: "underline",
+  },
+  languageSelector: {
+    marginTop: 40,
+  },
+  languageText: {
+    fontSize: 14,
+    color: "#333",
   },
 });
