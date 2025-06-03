@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   SafeAreaView,
@@ -11,16 +12,21 @@ import {
 import { Button } from "react-native-paper";
 
 const LoginScreen = () => {
+  const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.innerContainer}>
         {/* Left Panel */}
         <View style={styles.leftPanel}>
-          <Text style={styles.header}>REKKI DISTRIBUTORS</Text>
-          <Text style={styles.subHeader}>
-            the online platform for managing your{"\n"}customers, orders and
-            payments
-          </Text>
+          <View>
+            <Text style={styles.header}>
+              REKKI <br /> DISTRIBUTORS
+            </Text>
+            <Text style={styles.subHeader}>
+              the online platform for managing your{"\n"}customers, orders and
+              payments
+            </Text>
+          </View>
           <View style={styles.footerLinks}>
             <Text style={styles.link}>restaurants</Text>
             <Text style={styles.link}>distributors</Text>
@@ -62,7 +68,9 @@ const LoginScreen = () => {
 
           <Text style={styles.newUser}>
             new to REKKI?{" "}
-            <Text style={styles.signup}>set up a distributor account</Text>
+            <Text style={styles.link} onPress={() => router.push("/signup")}>
+              set up a distributor account
+            </Text>
           </Text>
 
           <TouchableOpacity style={styles.languageSelector}>
